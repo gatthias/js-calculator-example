@@ -4,8 +4,14 @@ const operatorsList = ['clearElement', 'clear', 'back', 'div', 'mul', 'sub', 'ad
 // Grab our screen element
 const myScreen = document.getElementById('calculator__screen-value');
 
-// Init screen value
+// Init our state
+let prevValue = 0;
+let currentValueString = "0";
 let currentValue = 0;
+let currentOperatorSymbol = null;
+let hasInput = false;
+
+// Init screen value
 refreshScreen();
 
 // Grab all our buttons
@@ -23,7 +29,7 @@ for (let button of buttons) {
  * Refresh our screen with current value
  */
 function refreshScreen() {
-  myScreen.value = currentValue;
+  myScreen.value = currentValueString;
 }
 
 /**
@@ -53,7 +59,14 @@ function processOperator(operatorSymbol) {
  * @param {any} numberAsString  The input number as a string
  */
 function processNumber(numberAsString) {
-  console.log("Number: " + numberAsString);
+  if (!hasInput) {
+    hasInput = true;
+    currentValueString = numberAsString;
+  } else {
+    currentValueString += numberAsString;
+  }
+  
+  refreshScreen();
 }
 
 /**
