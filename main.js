@@ -84,10 +84,43 @@ function processOperator(operatorSymbol) {
         // Just change the currentOperator
         currentOperatorSymbol = operatorSymbol;
       }
+      break;
+    case 'equals':
+      if (currentOperatorSymbol != null) {
+        // Process operation
+        processCurrentOperation();
+        // Remove operator
+        currentOperatorSymbol = null;
+        // Copy (calculated) prev value back to currentValue
+        currentValueString = prevValue.toString();
+      }
+      break;
+    case 'clearElement':
+      // Reinitialize input
+      clear(false);
+      break;
+    case 'clear':
+      // Reinitialize everything
+      clear(true);
+      break;
   }
 
   // Refresh the screen
   refreshScreen();
+}
+
+/**
+ * Reset our calculator state
+ * @param {any} bEverything Should we reset only the current element or everything
+ */
+function clear(bEverything) {
+  currentValueString = "0";
+  hasInput = false;
+
+  if (bEverything) {
+    prevValue = 0;
+    currentOperatorSymbol = null;
+  }
 }
 
 /**
