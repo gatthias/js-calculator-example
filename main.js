@@ -1,6 +1,19 @@
 // Declare our operators list
 const operatorsList = ['clearElement', 'clear', 'back', 'div', 'mul', 'sub', 'add', 'sign', 'dot', 'equals'];
 
+const keysToOperatorsDict = {
+  "Escape": "clearElement",
+  "Backspace": "back",
+  "/": "div",
+  "*": "mul",
+  "-": "sub",
+  "+": "add",
+  ".": "dot",
+  ",": "dot",
+  "Enter": "equals",
+  "=": "equals"
+}
+
 // Grab our screen element
 const prevValueScreen = document.getElementById('calculator__prev-value');
 const operatorScreen = document.getElementById('calculator__operator');
@@ -21,6 +34,10 @@ const buttons = document.getElementsByClassName("calculator__button");
 for (let button of buttons) {
   button.addEventListener('click', processClick.bind(button));
 }
+
+
+// Receive keyboard inputs
+document.addEventListener('keydown', handleKeyboard);
 
 
 /////////////////////////////
@@ -53,6 +70,22 @@ function processClick(event) {
     processOperator(buttonValue);
   } else {
     processNumber(buttonValue);
+  }
+}
+
+function handleKeyboard(event) {
+  let bHandled = false;
+  if (keysToOperatorsDict[event.key] !== undefined) {
+    const operator = keysToOperatorsDict[event.key];
+    processOperator(operator);
+    bHandled = true;
+  } else if (isNumber(event.key)) {
+    processNumber(event.key);
+    bHandled = true;
+  }
+
+  if (bHandled) {
+    event.preventDefault();
   }
 }
 
