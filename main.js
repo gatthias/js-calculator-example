@@ -2,4 +2,19 @@
 const myScreen = document.getElementById('calculator__screen-value');
 
 // Init screen value
-myScreen.value = 0;
+let currentValue = 0;
+refreshScreen();
+
+
+
+
+/////////////////////////////
+//  Helper functions
+//
+
+/**
+ * Refresh our screen with current value
+ */
+function refreshScreen() {
+  myScreen.value = currentValue;
+}
