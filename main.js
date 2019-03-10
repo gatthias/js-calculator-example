@@ -12,6 +12,13 @@ const keysToOperatorsDict = {
   ",": "dot",
   "Enter": "equals",
   "=": "equals"
+};
+
+const operationsSymbolsDict = {
+  "div": "/",
+  "mul": "*",
+  "sub": "-",
+  "add": "+"
 }
 
 // Grab our screen element
@@ -53,7 +60,7 @@ function refreshScreen() {
     operatorScreen.textContent = "";
   } else {
     prevValueScreen.textContent = prevValue.toString();
-    operatorScreen.textContent = currentOperatorSymbol;
+    operatorScreen.textContent = operationsSymbolsDict[currentOperatorSymbol];
   }
 
   myScreen.value = currentValueString;
