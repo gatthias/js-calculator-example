@@ -1,4 +1,4 @@
-// Declare our operators list
+// Declare our constants
 const operatorsList = ['clearElement', 'clear', 'back', 'div', 'mul', 'sub', 'add', 'sign', 'dot', 'equals'];
 
 const keysToOperatorsDict = {
@@ -21,7 +21,7 @@ const operationsSymbolsDict = {
   "add": "+"
 }
 
-// Grab our screen element
+// Grab our screen elements
 const prevValueScreen = document.getElementById('calculator__prev-value');
 const operatorScreen = document.getElementById('calculator__operator');
 const myScreen = document.getElementById('calculator__screen-value');
@@ -39,6 +39,7 @@ refreshScreen();
 // Grab all our buttons
 const buttons = document.getElementsByClassName("calculator__button");
 for (let button of buttons) {
+  // Receive click events
   button.addEventListener('click', processClick.bind(button));
 }
 
@@ -52,7 +53,7 @@ document.addEventListener('keydown', handleKeyboard);
 //
 
 /**
- * Refresh our screen with current value
+ * Refresh our screen with current values
  */
 function refreshScreen() {
   if (currentOperatorSymbol == null) {
@@ -80,6 +81,10 @@ function processClick(event) {
   }
 }
 
+/**
+ * Handles keypresses from user
+ * @param {KeyboardEvent} event The input event
+ */
 function handleKeyboard(event) {
   let bHandled = false;
   if (keysToOperatorsDict[event.key] !== undefined) {
@@ -158,6 +163,9 @@ function processOperator(operatorSymbol) {
   refreshScreen();
 }
 
+/**
+ * Remove last char from currentValueString. Clear input back to "0" if empty.
+ */
 function operatorBack() {
   // Remove last character of our currentValueString
   currentValueString = currentValueString.slice(0, currentValueString.length - 1);
@@ -169,6 +177,9 @@ function operatorBack() {
   }
 }
 
+/**
+ * Add a decimal symbol in our currentValueString, if not already present
+ */
 function operatorDot() {
   // Check if already decimal
   if (currentValueString.indexOf('.') > -1) {
@@ -179,6 +190,9 @@ function operatorDot() {
   hasInput = true;
 }
 
+/**
+ * Toggles a '-' symbol in front of our currentValueString
+ */
 function operatorSign() {
   if (!hasInput) {
     return;
