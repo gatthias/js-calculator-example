@@ -91,10 +91,27 @@ function processOperator(operatorSymbol) {
 }
 
 /**
- * Process the current operation
+ * Process the current operation. Update prevValue to (prevValue [currentOperator] currentValue)
  */
 function processCurrentOperation() {
-  console.log("Should execute operation " + prevValue.toString() + " " + currentOperatorSymbol + " " + currentValueString);
+  const currentValue = parseFloat(currentValueString);
+
+  switch (currentOperatorSymbol) {
+    case 'add':
+      prevValue = prevValue + currentValue;
+      break;
+    case 'sub':
+      prevValue = prevValue - currentValue;
+      break;
+    case 'mul':
+      prevValue = prevValue * currentValue;
+      break;
+    case 'div':
+      prevValue = prevValue / currentValue;
+      break;
+    default:
+      // Do nothing
+  }
 }
 
 /**
