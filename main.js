@@ -103,10 +103,49 @@ function processOperator(operatorSymbol) {
       // Reinitialize everything
       clear(true);
       break;
+    case 'back':
+      operatorBack();
+      break;
+    case 'dot':
+      operatorDot();
+      break;
+    case 'sign':
+      operatorSign();
+      break;
   }
 
   // Refresh the screen
   refreshScreen();
+}
+
+function operatorBack() {
+  // Remove last character of our currentValueString
+  currentValueString = currentValueString.slice(0, currentValueString.length - 1);
+
+  // If empty, set back to 0 (string)
+  if (currentValueString.length == 0) {
+    currentValueString = "0";
+  }
+}
+
+function operatorDot() {
+  // Check if already decimal
+  if (currentValueString.indexOf('.') > -1) {
+    return;
+  }
+  // If not, add a . at the end of currentValueString
+  currentValueString += ".";
+}
+
+function operatorSign() {
+  // Check if has a sign
+  if (currentValueString[0] === "-") {
+    // Strip first character
+    currentValueString = currentValueString.slice(1, currentValueString.length);
+  } else {
+    // Add a '-' before our string
+    currentValueString = '-' + currentValueString;
+  }
 }
 
 /**
