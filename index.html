@@ -11,12 +11,22 @@
 
       .calculator {
         background-color: white;
-        width: 500px;
+        width: 100%;
+        max-width: 500px;
         margin: 50px auto;
         padding: 7px;
         border-radius: 3px;
       }
 
+      @media screen and (max-width: 540px) {
+        body{
+          margin: 0;
+        }
+        .calculator{
+          padding: 0;
+        }
+      }
+      
       .calculator__screen {
         height: 50px;
         background-color: #333;
