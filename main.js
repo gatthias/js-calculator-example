@@ -67,18 +67,19 @@ function processOperator(operatorSymbol) {
     case 'mul':
     case 'div':
       if (hasInput) {
-        //TODO: Process input, new line
+        // Process input, new line
         if (currentOperatorSymbol != null) {
-          //TODO: Process operation
+          // Process operation
+          processCurrentOperation();
         } else {
           // Set previous value from current input
           prevValue = parseFloat(currentValueString);
-          // Update the currentOperator
-          currentOperatorSymbol = operatorSymbol;
-          // Set state to no input
-          hasInput = false;
         }
 
+        // Update the currentOperator
+        currentOperatorSymbol = operatorSymbol;
+        // Set state to no input
+        hasInput = false;
       } else {
         // Just change the currentOperator
         currentOperatorSymbol = operatorSymbol;
@@ -87,6 +88,13 @@ function processOperator(operatorSymbol) {
 
   // Refresh the screen
   refreshScreen();
+}
+
+/**
+ * Process the current operation
+ */
+function processCurrentOperation() {
+  console.log("Should execute operation " + prevValue.toString() + " " + currentOperatorSymbol + " " + currentValueString);
 }
 
 /**
