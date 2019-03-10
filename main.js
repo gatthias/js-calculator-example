@@ -2,6 +2,8 @@
 const operatorsList = ['clearElement', 'clear', 'back', 'div', 'mul', 'sub', 'add', 'sign', 'dot', 'equals'];
 
 // Grab our screen element
+const prevValueScreen = document.getElementById('calculator__prev-value');
+const operatorScreen = document.getElementById('calculator__operator');
 const myScreen = document.getElementById('calculator__screen-value');
 
 // Init our state
@@ -29,6 +31,14 @@ for (let button of buttons) {
  * Refresh our screen with current value
  */
 function refreshScreen() {
+  if (currentOperatorSymbol == null) {
+    prevValueScreen.textContent = "";
+    operatorScreen.textContent = "";
+  } else {
+    prevValueScreen.textContent = prevValue.toString();
+    operatorScreen.textContent = currentOperatorSymbol;
+  }
+
   myScreen.value = currentValueString;
 }
 
@@ -51,7 +61,32 @@ function processClick(event) {
  * @param {any} operatorSymbol  The symbol of the operator to process
  */
 function processOperator(operatorSymbol) {
-  console.log("Operator: " + operatorSymbol);
+  switch (operatorSymbol) {
+    case 'add':
+    case 'sub':
+    case 'mul':
+    case 'div':
+      if (hasInput) {
+        //TODO: Process input, new line
+        if (currentOperatorSymbol != null) {
+          //TODO: Process operation
+        } else {
+          // Set previous value from current input
+          prevValue = parseFloat(currentValueString);
+          // Update the currentOperator
+          currentOperatorSymbol = operatorSymbol;
+          // Set state to no input
+          hasInput = false;
+        }
+
+      } else {
+        // Just change the currentOperator
+        currentOperatorSymbol = operatorSymbol;
+      }
+  }
+
+  // Refresh the screen
+  refreshScreen();
 }
 
 /**
