@@ -1,2 +1,5 @@
+// Grab our screen element
 const myScreen = document.getElementById('calculator__screen-value');
-myScreen.value = 123;
+
+// Init screen value
+myScreen.value = 0;
