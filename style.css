@@ -48,4 +48,22 @@ body {
   width: 25%;
   height: 50px;
   font-size: 18px;
+  background-color: white;
+  border: 1px solid #777;
+}
+
+.calculator__button:hover {
+  background-color: #aaa;
+}
+
+.calculator__button:focus {
+  background-color: #999;
+  outline: none;
+}
+
+.calculator__button--secondary {
+  background-color: #eaeaea;
+}
+
+.calculator__button--secondary:hover {
 }
