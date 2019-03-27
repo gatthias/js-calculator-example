@@ -3,17 +3,12 @@
   * Only responsible for the view. Uses a calculator instance for actual processing
   */
 class CalculatorView {
-  context;
-
-  calculator;
-
-  prevValueScreen;
-  operatorScreen;
-  myScreen;
-
-  constructor(context, calculator) {
+  constructor(context, calculator, prevValueScreen, operatorScreen, myScreen) {
     this.context = context;
     this.calculator = calculator;
+    this.prevValueScreen;
+    this.operatorScreen;
+    this.myScreen;
 
     this.init();
   }

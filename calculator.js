@@ -4,13 +4,13 @@
   * Only responsible for processing, has no UI on its own
   */
 class Calculator {
-
-  prevValue = 0;
-  currentValueString = "0";
-  currentValue = 0;
-  currentOperatorSymbol = null;
-  hasInput = false;
-
+    constructor(prevValue, currentValue, currentValueString, currentOperatorSymbol, hasInput){
+    this.prevValue = 0;
+    this.currentValueString = "0";
+    this.currentValue = 0;
+    this.currentOperatorSymbol = null;
+    this.hasInput = false;
+    }
   /**
    * Process one of our calculator's operator
    * @param {any} operatorSymbol  The symbol of the operator to process
